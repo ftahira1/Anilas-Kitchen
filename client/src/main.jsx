@@ -4,11 +4,11 @@ import './index.css';
 
 import App from './App.jsx';
 import Home from './pages/Home';
-import Detail from './pages/SingleMeal';
+import SingleMeal from './pages/SingleMeal';
 import NoMatch from './pages/NoMatch';
 import Login from './pages/LogIn';
 import Signup from './pages/SignUp';
-import OrderHistory from './pages/OrderHistory';
+import OrderStory from './pages/OrderStory';
 import Success from './pages/Success';
 // import Maps from './pages/Maps';
 
@@ -33,11 +33,11 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       }, {
-        path: '/orderHistory',
-        element: <OrderHistory />
+        path: '/orderStory',
+        element: <OrderStory />
       }, {
-        path: '/products/:id',
-        element: <Detail />
+        path: '/meals/:id',
+        element: <SingleMeal />
       }, {
         path: '/success',
         element: <Success />
