@@ -18,7 +18,7 @@ function ListItem(item) {
   const { list } = state
 
   const addToList = () => {
-    const itemInList = cart.find((listItem) => listItem._id === _id)
+    const itemInList = list.find((listItem) => listItem._id === _id)
     if (itemInList) {
       dispatch({
         type: UPDATE_LIST_QUANTITY,

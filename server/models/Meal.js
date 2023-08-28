@@ -24,7 +24,7 @@ const mealSchema = new Schema({
     min: 0,
     default: 0
   },
-  category: {
+  menu: {
     type: Schema.Types.ObjectId,
     ref: 'Menu',
     required: true

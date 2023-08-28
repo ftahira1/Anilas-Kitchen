@@ -1,13 +1,13 @@
 import MealList from "../components/MealList";
 import Menu from "../components/Menu";
-import Cart from "../components/Cart";
+import List from "../components/List";
 
 const Home = () => {
   return (
     <div className="container">
       <Menu />
       <MealList />
-      <Cart />
+      <List />
     </div>
   );
 };

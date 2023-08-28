@@ -39,7 +39,7 @@ function MealList() {
     }
 
     return state.meals.filter(
-      (product) => meal.menu._id === currentMenu
+      (meal) => meal.menu._id === currentMenu
     );
   }
 

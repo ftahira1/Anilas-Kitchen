@@ -13,7 +13,7 @@ export function pluralize(name, count) {
         const db = request.result;
         db.createObjectStore('meals', { keyPath: '_id' });
         db.createObjectStore('menues', { keyPath: '_id' });
-        db.createObjectStore('cart', { keyPath: '_id' });
+        db.createObjectStore('list', { keyPath: '_id' });
       };
   
       request.onerror = function(e) {

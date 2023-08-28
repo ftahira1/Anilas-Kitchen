@@ -47,17 +47,17 @@ const typeDefs = `
   }
 
   type Query {
-    categories: [Category]
+    menues: [Menu]
     meals(menu: ID, name: String): [Meal]
     meal(_id: ID!): Meal
     user: User
     order(_id: ID!): Order
-    checkout(meals: [ProductInput]): Checkout
+    checkout(meals: [MealInput]): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addOrder(meals: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateMeal(_id: ID!, quantity: Int!): Meal
     login(email: String!, password: String!): Auth

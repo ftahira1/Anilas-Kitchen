@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import Cart from '../components/Cart';
+import List from '../components/List';
 import { useStoreContext } from '../utils/GlobalState';
 import {
-  REMOVE_FROM_CART,
-  UPDATE_CART_QUANTITY,
-  ADD_TO_CART,
+  REMOVE_FROM_LIST,
+  UPDATE_LIST_QUANTITY,
+  ADD_TO_LIST,
   UPDATE_MEALS,
 } from '../utils/actions';
 import { QUERY_MEALS } from '../utils/queries';
@@ -22,7 +22,7 @@ function SingleMeal() {
 
   const { loading, data } = useQuery(QUERY_MEALS);
 
-  const { meals, cart } = state;
+  const { meals, list } = state;
 
   useEffect(() => {
     // already in global store
@@ -51,39 +51,39 @@ function SingleMeal() {
     }
   }, [meals, data, loading, dispatch, id]);
 
-  const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === id);
-    if (itemInCart) {
+  const addToList = () => {
+    const itemInList = list.find((listItem) => listItem._id === id);
+    if (itemInList) {
       dispatch({
-        type: UPDATE_CART_QUANTITY,
+        type: UPDATE_LIST_QUANTITY,
         _id: id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        purchaseQuantity: parseInt(itemInList.purchaseQuantity) + 1,
       });
-      idbPromise('cart', 'put', {
-        ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      idbPromise('list', 'put', {
+        ...itemInList,
+        purchaseQuantity: parseInt(itemInList.purchaseQuantity) + 1,
       });
     } else {
       dispatch({
-        type: ADD_TO_CART,
+        type: ADD_TO_LIST,
         meal: { ...currentMeal, purchaseQuantity: 1 },
       });
-      idbPromise('cart', 'put', { ...currentMeal, purchaseQuantity: 1 });
+      idbPromise('list', 'put', { ...currentMeal, purchaseQuantity: 1 });
     }
   };
 
-  const removeFromCart = () => {
+  const removeFromList = () => {
     dispatch({
-      type: REMOVE_FROM_CART,
+      type: REMOVE_FROM_LIST,
       _id: currentMeal._id,
     });
 
-    idbPromise('cart', 'delete', { ...currentMeal });
+    idbPromise('list', 'delete', { ...currentMeal });
   };
 
   return (
     <>
-      {currentMeal && cart ? (
+      {currentMeal && list ? (
         <div className="container my-1">
           <Link to="/">← Back to Menu</Link>
 
@@ -97,10 +97,10 @@ function SingleMeal() {
 
           <p>
             <strong>Price:</strong>${currentMeal.price}{' '}
-            <button onClick={addToCart}>Add to List</button>
+            <button onClick={addToList}>Add to List</button>
             <button
-              disabled={!cart.find((p) => p._id === currentMeal._id)}
-              onClick={removeFromCart}
+              disabled={!list.find((p) => p._id === currentMeal._id)}
+              onClick={removeFromList}
             >
               Remove from List
             </button>
@@ -109,7 +109,7 @@ function SingleMeal() {
         </div>
       ) : null}
       {loading ? <img src={spinner} alt="loading" /> : null}
-      <Cart />
+      <List />
     </>
   );
 }

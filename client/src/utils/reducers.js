@@ -1,13 +1,13 @@
 import {
     UPDATE_MEALS,
-    ADD_TO_CART,
-    UPDATE_CART_QUANTITY,
-    REMOVE_FROM_CART,
-    ADD_MULTIPLE_TO_CART,
+    ADD_TO_LIST,
+    UPDATE_LIST_QUANTITY,
+    REMOVE_FROM_LIST,
+    ADD_MULTIPLE_TO_LIST,
     UPDATE_MENUES,
     UPDATE_CURRENT_MENU,
-    CLEAR_CART,
-    TOGGLE_CART
+    CLEAR_LIST,
+    TOGGLE_LIST
   } from "./actions";
   
   export const reducer = (state, action) => {
@@ -18,24 +18,24 @@ import {
           meals: [...action.meals],
         };
   
-      case ADD_TO_CART:
+      case ADD_TO_LIST:
         return {
           ...state,
-          cartOpen: true,
-          cart: [...state.cart, action.meal],
+          listOpen: true,
+          list: [...state.list, action.meal],
         };
   
-      case ADD_MULTIPLE_TO_CART:
+      case ADD_MULTIPLE_TO_LIST:
         return {
           ...state,
-          cart: [...state.cart, ...action.meals],
+          list: [...state.list, ...action.meals],
         };
   
-      case UPDATE_CART_QUANTITY:
+      case UPDATE_LIST_QUANTITY:
         return {
           ...state,
-          cartOpen: true,
-          cart: state.cart.map(meal => {
+          listOpen: true,
+          list: state.list.map(meal => {
             if (action._id === meal._id) {
               meal.purchaseQuantity = action.purchaseQuantity
             }
@@ -43,28 +43,28 @@ import {
           })
         };
   
-      case REMOVE_FROM_CART:
-        let newState = state.cart.filter(meal => {
+      case REMOVE_FROM_LIST:
+        let newState = state.list.filter(meal => {
           return meal._id !== action._id;
         });
   
         return {
           ...state,
-          cartOpen: newState.length > 0,
-          cart: newState
+          listOpen: newState.length > 0,
+          list: newState
         };
   
-      case CLEAR_CART:
+      case CLEAR_LIST:
         return {
           ...state,
-          cartOpen: false,
-          cart: []
+          listOpen: false,
+          list: []
         };
   
-      case TOGGLE_CART:
+      case TOGGLE_LIST:
         return {
           ...state,
-          cartOpen: !state.cartOpen
+          listOpen: !state.listOpen
         };
   
       case UPDATE_MENUES:

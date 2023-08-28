@@ -11,8 +11,8 @@ export function useMealReducer(initialState) {
 const StoreProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useMealReducer({
     meals: [],
-    cart: [],
-    cartOpen: false,
+    list: [],
+    listOpen: false,
     menues: [],
     currentMenu: '',
   });

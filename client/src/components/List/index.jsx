@@ -40,7 +40,7 @@ const List = () => {
 
   function calculateTotal() {
     let sum = 0;
-    state.cart.forEach((item) => {
+    state.list.forEach((item) => {
       sum += item.price * item.purchaseQuantity;
     });
     return sum.toFixed(2);
@@ -73,7 +73,7 @@ const List = () => {
       {state.list.length ? (
         <div>
           {state.list.map((item) => (
-            <CartItem key={item._id} item={item} />
+            <ListItem key={item._id} item={item} />
           ))}
 
           <div className="flex-row space-between">

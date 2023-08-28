@@ -4,7 +4,7 @@ const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
-    menus: async () => {
+    menues: async () => {
       return await Menu.find();
     },
     meals: async (parent, { menu, name }) => {
@@ -53,7 +53,7 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      // We map through the list of products sent by the client to extract the _id of each item and create a new Order.
+      // We map through the list of meals sent by the client to extract the _id of each item and create a new Order.
       await Order.create({ meals: args.meals.map(({ _id }) => _id) });
       const line_items = [];
 
