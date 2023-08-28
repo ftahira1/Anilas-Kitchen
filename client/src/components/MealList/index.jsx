@@ -7,7 +7,7 @@ import { QUERY_MEALS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
-function Meal() {
+function MealList() {
   const [state, dispatch] = useStoreContext();
 
   const { currentMenu } = state;
@@ -67,4 +67,4 @@ function Meal() {
   );
 }
 
-export default Meal;
+export default MealList;
