@@ -10,7 +10,7 @@ import Login from './pages/LogIn';
 import Signup from './pages/SignUp';
 import OrderStory from './pages/OrderStory';
 import Success from './pages/Success';
-// import Maps from './pages/Maps';
+import Maps from './pages/Maps';
 
 const router = createBrowserRouter([
   {
@@ -22,10 +22,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />
       }, 
-      // {
-      //   path: '/maps',
-      //   element: <Maps />
-      // },
+      {
+        path: '/maps',
+        element: <Maps />
+      },
       {
         path: '/login',
         element: <Login />
