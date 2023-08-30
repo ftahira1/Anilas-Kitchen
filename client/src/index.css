@@ -18,6 +18,13 @@ body {
   min-height: 100%;
 }
 
+#map {
+  height: 300px; 
+  width: 80%; 
+  display: flex;
+  justify-content: center;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -28,6 +35,22 @@ body {
   color: var(--dark);
   background-color: wheat;
   padding-right: 6%;
+}
+
+#maps {
+
+}
+
+#map {
+
+}
+
+#description {
+
+}
+
+#h2 {
+  
 }
 
 h1,

@@ -1,38 +1,51 @@
-import React from 'react';
+import React from 'react'
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 
-const Maps = () => {
-    let map;
-    let latValue = 40.1116668;
-    let lngValue = -75.0175593;
-    async function initMap() {
-      // The location of Uluru
-      const position = { lat: latValue, lng: lngValue };
-      // Request needed libraries.
-      //@ts-ignore
-      const { Map } = await google.maps.importLibrary("maps");
-      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-    
-      // The map, centered at Uluru
-      map = new Map(document.getElementById("map"), {
-        zoom: 15,
-        center: position,
-        mapId: "DEMO_MAP_ID",
-      });
-    
-      // The marker, positioned at Uluru
-      const marker = new AdvancedMarkerElement({
-        map: map,
-        position: position,
-        title: "Uluru",
-      });
-    }
-    
-    initMap();
-      
-    return (
-    <div id="map">
-    </div>
-    )
+const containerStyle = {
+  width: '550px',
+  height: '550px'
 };
 
-export default Maps;
+const center = {
+  lat: 40.1116668,
+  lng: -75.0175593
+};
+
+function MyComponent() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: import.meta.env.VITE_SECRET_KEY
+  })
+
+  const [map, setMap] = React.useState(null)
+
+  const onLoad = React.useCallback(function callback(map) {
+    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+    <div id='map'>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={15}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <Marker position={center} zoom={10} title='Chef Albos'/>
+      </GoogleMap>
+      </div>
+  ) : <></>
+}
+
+export default React.memo(MyComponent);
+

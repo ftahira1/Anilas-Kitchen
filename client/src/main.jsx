@@ -11,6 +11,7 @@ import Signup from './pages/SignUp';
 import OrderStory from './pages/OrderStory';
 import Success from './pages/Success';
 import Maps from './pages/Maps';
+import Maps2 from './pages/Maps2';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/maps',
         element: <Maps />
+      },
+      {
+        path: '/maps2',
+        element: <Maps2 />
       },
       {
         path: '/login',

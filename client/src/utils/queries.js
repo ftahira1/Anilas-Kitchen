@@ -16,6 +16,14 @@ export const QUERY_MEALS = gql`
   }
 `;
 
+export const QUERY_GOOGLE_MAPS_KEY = gql`
+query GOOGLE {
+
+  googleApikey {
+    apiKey
+  }
+}`
+
 export const QUERY_CHECKOUT = gql`
   query getCheckout($meals: [MealInput]) {
     checkout(meals: $meals) {

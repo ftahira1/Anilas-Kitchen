@@ -1,9 +1,15 @@
 const { User, Meal, Menu, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+require('dotenv').config();
 
 const resolvers = {
   Query: {
+    googleApikey: async () =>{
+      return {
+        apiKey: process.env.MAPS_API_KEY
+      }
+    },
     menues: async () => {
       return await Menu.find();
     },

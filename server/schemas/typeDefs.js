@@ -4,6 +4,10 @@ const typeDefs = `
     name: String
   }
 
+  type GoogleMapApiKey {
+    apiKey: String
+  }
+
   type Meal {
     _id: ID
     name: String
@@ -53,6 +57,7 @@ const typeDefs = `
     user: User
     order(_id: ID!): Order
     checkout(meals: [MealInput]): Checkout
+    googleApikey: GoogleMapApiKey
   }
 
   type Mutation {
